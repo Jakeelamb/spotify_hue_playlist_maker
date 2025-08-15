@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Spotify Color Playlist</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Color Playlist</h1>
+      <a id="loginBtn" href="/auth/login" class="btn">Login with Spotify</a>
+    </header>
+
+    <main>
+      <section id="controls" class="card hidden">
+        <div class="row">
+          <label for="hex">Target Hex</label>
+          <input id="hex" type="text" placeholder="#ff5500" maxlength="7" />
+          <div id="swatch"></div>
+        </div>
+
+        <div class="row">
+          <div class="picker-wrap">
+            <canvas id="colorCanvas" width="360" height="200" aria-label="Color picker"></canvas>
+            <div id="pickerDot" class="picker-dot" role="presentation"></div>
+          </div>
+        </div>
+
+        <div class="row">
+          <label for="source">Source</label>
+          <select id="source">
+            <option value="liked">Liked Songs</option>
+            <option value="playlist">Playlist URL</option>
+          </select>
+        </div>
+
+        <div class="row hidden" id="playlistRow">
+          <label for="playlistUrl">Playlist URL</label>
+          <input id="playlistUrl" type="url" placeholder="https://open.spotify.com/playlist/..." />
+        </div>
+
+        <div class="row">
+          <label for="limit">Max tracks to analyze</label>
+          <input id="limit" type="number" min="50" max="10000" step="50" value="1000" />
+        </div>
+
+        
+
+        <div class="row actions">
+          <button id="buildBtn">Create Playlist</button>
+        </div>
+        <div id="status" class="status"></div>
+        <div id="progressContainer" class="progress-container hidden">
+          <div class="progress-bar">
+            <div id="progressFill" class="progress-fill"></div>
+          </div>
+          <div id="progressText" class="progress-text">Analyzing tracks...</div>
+        </div>
+        
+        <div id="investigationPanel" class="investigation-panel hidden">
+          <h3>🔍 Investigating Track Colors</h3>
+          <div class="investigation-stats">
+            <div class="stat">
+              <span class="stat-label">Total Tracks:</span>
+              <span id="totalTracks" class="stat-value">0</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Analyzed:</span>
+              <span id="analyzedTracks" class="stat-value">0</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Current Track:</span>
+              <span id="currentTrack" class="stat-value">-</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Time Elapsed:</span>
+              <span id="timeElapsed" class="stat-value">0s</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Est. Remaining:</span>
+              <span id="timeRemaining" class="stat-value">-</span>
+            </div>
+          </div>
+          <div class="current-analysis">
+            <div id="currentImage" class="current-image"></div>
+            <div id="currentDetails" class="current-details">
+              <div id="trackName" class="track-name">Selecting next track...</div>
+              <div id="artistName" class="artist-name">-</div>
+              <div id="colorInfo" class="color-info">-</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="result" class="card hidden"></section>
+      <section id="gallery" class="card hidden">
+        <div class="row">
+          <label for="topn">Top N to save</label>
+          <input id="topn" type="number" min="1" max="1000" step="1" value="100" />
+          <button id="saveBtn">Save Playlist</button>
+        </div>
+        <div id="grid" class="grid"></div>
+      </section>
+
+      <section id="savePanel" class="card hidden">
+        <div class="row">
+          <div id="chosenSwatch" class="swatch"></div>
+          <input id="playlistName" type="text" placeholder="Playlist name" />
+          <button id="confirmSaveBtn">Confirm Save</button>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <small>Generated playlist cover uses a color gradient of your chosen hue.</small>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+  </html>
+
+

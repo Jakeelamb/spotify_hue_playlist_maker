@@ -1,0 +1,8 @@
+Flask==3.0.3
+Flask-Session==0.6.0
+Flask-Cors==4.0.1
+requests==2.32.3
+Pillow==10.4.0
+waitress==3.0.0
+python-dotenv==1.0.1
+
